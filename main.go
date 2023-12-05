@@ -1,23 +1,11 @@
 package main
 
-import "fmt"
-
-func main() {
-	fmt.Println("Hello, World!")
-
-	result := add(5, 3)
-	fmt.Println("Addition result:", result)
-
-	result = subtract(10, 7)
-	fmt.Println("Subtraction result:", result)
-}
-package main
-
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"bufio"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -25,21 +13,22 @@ func main() {
 
 	fmt.Print("Enter the first integer: ")
 	firstIntInput, _ := reader.ReadString('\n')
-	firstInt, _ := strconv.Atoi(firstIntInput)
+	firstInt, _ := strconv.Atoi(strings.TrimSpace(firstIntInput))
 
 	fmt.Print("Enter the second integer: ")
 	secondIntInput, _ := reader.ReadString('\n')
-	secondInt, _ := strconv.Atoi(secondIntInput)
+	secondInt, _ := strconv.Atoi(strings.TrimSpace(secondIntInput))
 
-	fmt.Print("Enter the operation (+ or -): ")
+	fmt.Print("Enter the operation (a or s): ")
 	operationInput, _ := reader.ReadString('\n')
-	operation := operationInput[:len(operationInput)-1]
+	operation := strings.TrimSpace(operationInput)
 
 	var result int
+
 	switch operation {
-	case "+":
+	case "a":
 		result = add(firstInt, secondInt)
-	case "-":
+	case "s":
 		result = subtract(firstInt, secondInt)
 	default:
 		fmt.Println("Invalid operation")
